@@ -77,7 +77,8 @@ module.exports.sockets = {
   ***************************************************************************/
 
   // grant3rdPartyCookie: true,
-  
+  onlyAllowOrigins: ['http://localhost:4200', 'https://blabbersocial.netlify.app']
+
 
 
 };
