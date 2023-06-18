@@ -18,7 +18,7 @@ module.exports.http = {
     // ...
     cors: (function() {
       const corsOptions = {
-        origin: 'http://localhost:4200',
+        origin: 'https://backend-production-3fb8.up.railway.app/',
         credentials: false,
         methods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
         headers: 'Content-Type',
