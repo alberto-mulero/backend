@@ -35,16 +35,16 @@ module.exports = {
       },
 
       listarUno: async function(req, res) {
-        console.log(req.params.id);
-        try {
-          const notificacion = await Notificacion.find({id_usuario: req.params.id}).populate("id_usuario");
-          if (!notificacion) {
-            return res.notFound('Notificaciones no encontradas');
-          }
-          return res.json(notificacion);
-        } catch (error) {
-          return res.serverError(error);
-        }
+        return req.params.id;
+        // try {
+        //   const notificacion = await Notificacion.find({id_usuario: req.params.id}).populate("id_usuario");
+        //   if (!notificacion) {
+        //     return res.notFound('Notificaciones no encontradas');
+        //   }
+        //   return res.json(notificacion);
+        // } catch (error) {
+        //   return res.serverError(error);
+        // }
       },
   
 
