@@ -35,7 +35,7 @@ module.exports = {
       },
 
       listarUno: async function(req, res) {
-        return req.param("id");
+        return req.params.id;
         // try {
         //   const notificacion = await Notificacion.find({id_usuario: req.params.id}).populate("id_usuario");
         //   if (!notificacion) {
