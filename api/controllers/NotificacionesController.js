@@ -35,17 +35,17 @@ module.exports = {
       },
 
       listarUno: async function(req, res) {
-        // return req.params.id;
         try {
-          const notificacion = await Notificacion.findOne({id_usuario: req.body.id}).populate("id_usuario");
-          if (!notificacion) {
+          const notificaciones = await Notificacion.find({ id_usuario: req.body.id }).populate("id_usuario");
+          if (notificaciones.length === 0) {
             return res.notFound('Notificaciones no encontradas');
           }
-          return res.json(notificacion);
+          return res.json(notificaciones);
         } catch (error) {
           return res.serverError(error);
         }
       },
+      
   
 
       eliminar: async function (req, res) {
