@@ -45,8 +45,6 @@ module.exports = {
           return res.serverError(error);
         }
       },
-      
-  
 
       eliminar: async function (req, res) {
         try {
