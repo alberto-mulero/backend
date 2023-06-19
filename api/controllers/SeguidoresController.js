@@ -8,7 +8,7 @@ module.exports = {
       var seguidor_id= req.body.seguidor_id;
       var seguido_id = req.body.seguido_id;
       // Verificar si el usuario ya sigue al usuario objetivo
-      const existeSeguidor = await Seguidores.findOne({seguidor_id: seguidor_id, seguido_id: seguido_id});
+      const existeSeguidor = await Seguidores.find({seguidor_id: seguidor_id, seguido_id: seguido_id});
       console.log(existeSeguidor);
       if (existeSeguidor) {
         return res.status(200).json(existeSeguidor)
