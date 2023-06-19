@@ -33,7 +33,20 @@ module.exports = {
           res.status(500).json({ error: 'Error al obtener la lista de notificaciones' });
         }
       },
-    
+
+      listarUno: async function(req, res) {
+        //console.log(req.params);
+        try {
+          const notificacion = await Notificacion.findOne({ id_usuario: req.params.id }).populate("id_usuario");
+          if (!notificacion) {
+            return res.notFound('Notificaciones no encontradas');
+          }
+          return res.json(notificacion);
+        } catch (error) {
+          return res.serverError(error);
+        }
+      },
+  
 
       eliminar: async function (req, res) {
         try {
