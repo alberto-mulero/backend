@@ -37,7 +37,7 @@ module.exports = {
       listarUno: async function(req, res) {
         // return req.params.id;
         try {
-          const notificacion = await Notificacion.find({id_usuario: 4}).populate("id_usuario");
+          const notificacion = await Notificacion.findOne({id_usuario: 4});
           if (!notificacion) {
             return res.notFound('Notificaciones no encontradas');
           }
