@@ -29,9 +29,8 @@ module.exports = {
         // const usuarioId = req.param('usuarioId');
         
         try {
-          const mensajes = await Mensaje.find({id_usuario_envia: id, id_usuario_recibe: usuarioId}).sort('fecha_envio ASC').populate("id_usuario_recibe");
-          const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: id, id_usuario_envia: usuarioId }).sort('fecha_envio ASC').populate("id_usuario_envia");
- 
+          const mensajes = await Mensaje.find({id_usuario_envia: id, id_usuario_recibe: usuarioId}).sort('fecha_envio ASC').populate("id_usuario_recibe").populate("id_usuario_envia");
+          const mensajesRecibidos = await Mensaje.find({ id_usuario_recibe: id, id_usuario_envia: usuarioId }).sort('fecha_envio ASC').populate("id_usuario_recibe").populate("id_usuario_envia");
 
           // Combinar los mensajes enviados y recibidos
           const conversacion = [...mensajes, ...mensajesRecibidos];
