@@ -32,7 +32,6 @@ module.exports.routes = {
   
   //RUTAS DE SEGUIDORES//
   'POST /seguidorNuevo': 'SeguidoresController.seguidorNuevo',
-  'POST /dejarSeguir': 'SeguidoresController.dejarSeguirUsuario',
   'POST /seguirUsuario': 'SeguidoresController.seguirUsuario',
   'GET /seguidores': 'SeguidoresController.obtenerSeguidores',
   'GET /seguidos': 'SeguidoresController.obtenerSeguidos',
