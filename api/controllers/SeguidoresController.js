@@ -4,12 +4,10 @@
 module.exports = {
   seguirUsuario: async function (req, res) {
      try {
-      console.log(req.body);
       var seguidor_id= req.body.seguidor_id;
       var seguido_id = req.body.seguido_id;
       // Verificar si el usuario ya sigue al usuario objetivo
       const existeSeguidor = await Seguidores.find({seguidor_id: seguidor_id, seguido_id: seguido_id});
-      console.log(existeSeguidor);
       if (existeSeguidor) {
         return res.status(200).json(existeSeguidor)
       }
@@ -22,7 +20,6 @@ module.exports = {
   obtenerSeguidores: async function (req, res) {
     try {
       const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
-      //console.log(usuarioId);
       // Busca los seguidores del usuario especificado
       const seguidores = await Seguidores.find({ seguido_id: usuarioId })
         .populate('seguidor_id'); // Realiza el populate para obtener los datos de los seguidores
@@ -36,29 +33,20 @@ module.exports = {
   obtenerSeguidos: async function (req, res) {
     try {
       const usuarioId = req.query.userId; // Obtén el ID del usuario del parámetro de la consulta
-      //console.log(usuarioId);
       // Busca los usuarios seguidos por el usuario especificado
       const seguidos = await Seguidores.find({ seguidor_id: usuarioId })
         .populate('seguido_id'); // Realiza el populate para obtener los datos de los usuarios seguidos
   
       res.status(200).json(seguidos);
     } catch (error) {
-      console.log(error);
       res.status(500).json({ error: 'Error al obtener los usuarios seguidos' });
     }
   },
 
   dejarSeguirUsuario: async function (req, res) {
     try {
-      var seguidor_id = req.body.seguidor_id;
-      var seguido_id = req.body.seguido_id;
-  
-      // Verificar si el usuario ya sigue al usuario objetivo
-      const existeSeguidor = await Seguidores.findOne({ seguidor_id: seguidor_id, seguido_id: seguido_id });
-  
-      if (!existeSeguidor) {
-        return res.status(400).json({ error: 'El usuario no sigue al usuario objetivo' });
-      }
+      const seguidor_id = req.body.seguidor_id;
+      const seguido_id = req.body.seguido_id;
   
       // Eliminar el seguidor
       await Seguidores.delete({ seguidor_id: seguidor_id, seguido_id: seguido_id });
@@ -71,7 +59,6 @@ module.exports = {
   
   seguidorNuevo: async function (req, res) {
     try {
-      console.log(req.body);
       const { fecha, seguidor_id, seguido_id } = req.body;
 
       const nuevo = await Seguidores.create( {
