@@ -50,22 +50,25 @@ module.exports = {
 
   dejarSeguirUsuario: async function (req, res) {
     try {
-      const { idUsuarioDejarSeguir } = req.params;
-      const seguidor = req.user.id;
-
+      var seguidor_id = req.body.seguidor_id;
+      var seguido_id = req.body.seguido_id;
+  
       // Verificar si el usuario ya sigue al usuario objetivo
-      const seguidorExistente = await Seguidores.findOne({ seguidor, seguido: idUsuarioDejarSeguir });
-      if (!seguidorExistente) {
-        return res.status(400).json({ error: 'No sigues a este usuario' });
+      const existeSeguidor = await Seguidores.findOne({ seguidor_id: seguidor_id, seguido_id: seguido_id });
+  
+      if (!existeSeguidor) {
+        return res.status(400).json({ error: 'El usuario no sigue al usuario objetivo' });
       }
-
+  
       // Eliminar el seguidor
-      await Seguidores.destroy({ seguidor, seguido: idUsuarioDejarSeguir });
-      res.status(200).json({ mensaje: 'Has dejado de seguir al usuario' });
+      await Seguidores.destroyOne({ seguidor_id: seguidor_id, seguido_id: seguido_id });
+  
+      res.status(200).json({ message: 'Se ha dejado de seguir al usuario exitosamente' });
     } catch (error) {
       res.status(500).json({ error: 'Error al dejar de seguir al usuario' });
     }
   },
+  
   seguidorNuevo: async function (req, res) {
     try {
       console.log(req.body);
