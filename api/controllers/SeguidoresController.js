@@ -49,7 +49,7 @@ module.exports = {
       const seguido_id = req.body.seguido_id;
   
       // Eliminar el seguidor
-      await Seguidores.delete({ seguidor_id: seguidor_id, seguido_id: seguido_id });
+      await Seguidores.destroy({ seguidor_id: seguidor_id, seguido_id: seguido_id });
   
       res.status(200).json({ message: 'Se ha dejado de seguir al usuario exitosamente' });
     } catch (error) {
